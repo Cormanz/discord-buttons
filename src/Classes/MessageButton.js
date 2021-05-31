@@ -27,6 +27,14 @@ class MessageButton {
         return this;
     }
 
+    get id() {
+        return this.custom_id;
+    }
+
+    set id(val) {
+        this.setID(id);
+    }
+
     setStyle(style) {
         style = resolveStyle(resolveString(style));
         this.style = style;

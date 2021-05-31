@@ -3,9 +3,7 @@ const WebhookClient = require('./WebhookClient');
 const Message = require('./Message');
 
 class ButtonEvent {
-
     constructor(client, data) {
-
         this.client = client;
 
         this.id = data.data.custom_id;
@@ -64,6 +62,20 @@ class ButtonEvent {
             },
         });
         this.deferred = true;
+    }
+
+    async respond(text) {
+        if (this.deferred || this.replied) throw new Error('BUTTON_ALREADY_REPLIED: This button already has a reply');
+        await this.client.api.interactions(this.discordID, this.token).callback.post({
+            data: {
+                type: 4,
+                data: {
+                    flags: 1 << 6,
+                    content: text
+                },
+            },
+        });
+        this.deferred = true;                    
     }
 
     get reply() {
