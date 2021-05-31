@@ -8,8 +8,8 @@ class MessageButton {
     }
 
     setup(data) {
+        if (data.style && data.style == 'gray') data.style = 'grey';
 
-        if(data.style && data.style == 'gray') data.style = 'grey';
         this.style = 'style' in data ? resolveStyle(resolveString(data.style)) : null;
 
         this.label = 'label' in data ? resolveString(data.label) : null;
@@ -32,7 +32,11 @@ class MessageButton {
     }
 
     set id(val) {
-        this.setID(id);
+        this.setID(val);
+    }
+
+    match(event) {
+        return event.id == this.id;
     }
 
     setStyle(style) {

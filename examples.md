@@ -4,7 +4,7 @@
 
 ### Normal Button
 ```js
-let button = new disbut.MessageButton()
+const button = new disbut.MessageButton()
   .setStyle('red')
   .setLabel('My First Button!') 
   .setID('click_to_function') 
@@ -17,7 +17,7 @@ message.channel.send('Hey, i am powered by https://npmjs.com/discord-buttons', b
 
 ### URL Buttons
 ```js
-let button = new disbut.MessageButton()
+const button = new disbut.MessageButton()
   .setStyle('url')
   .setURL('https://npmjs.com/discord-buttons') 
   .setLabel('My First URL Button!') 
@@ -28,6 +28,22 @@ message.channel.send('Hey, i am powered by https://npmjs.com/discord-buttons', b
 <b>P.S:</b> You need to Change your `style` to `url`, you don't have `id` for this kind of buttons too, and also make sure you have your URL in button with `setURL` and URL is valid.
 
 <img align="center" src="https://cdn.discordapp.com/attachments/846455339419172874/848314748239085608/Main1.png"></img>
+
+### Handling Buttons
+
+```js
+const myButton = disbut.MessageButton()
+  .setStyle('red')
+  .setLabel('My Second Button!') 
+  .setID('myId')
+  .setDisabled();
+
+client.on('clickButton', button => {
+  if (!myButton.match(button)) return;
+
+  button.respond('Only you can see this message!');
+});
+```
 
 ## Button Styles
 
